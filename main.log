@@ -1,0 +1,37 @@
+2026-04-22 10:14:20 | INFO | ==================================================
+2026-04-22 10:14:20 | INFO | EditStat Pipeline — Starting
+2026-04-22 10:14:20 | INFO | ==================================================
+2026-04-22 10:14:20 | INFO | [Stage 1/4] Ingestion
+2026-04-22 10:14:20 | INFO | Starting ingestion...
+2026-04-22 10:14:20 | INFO | [EditStat] Loaded 15 rows, 7 columns.
+2026-04-22 10:14:20 | INFO | [QueueStat] Loaded 15 rows, 7 columns.
+2026-04-22 10:14:20 | INFO | Ingestion complete.
+2026-04-22 10:14:20 | INFO | [Stage 2/4] Processing
+2026-04-22 10:14:20 | INFO | Starting processing...
+2026-04-22 10:14:20 | WARNING | [EditStat] 3 rows with unparseable values — dropping.
+2026-04-22 10:14:20 | INFO | [EditStat] Processed 12 clean rows.
+2026-04-22 10:14:21 | INFO | [QueueStat] Processed 15 clean rows.
+2026-04-22 10:14:21 | INFO | Processing complete.
+2026-04-22 10:14:21 | INFO | [Stage 3/4] Appending to master
+2026-04-22 10:14:21 | INFO | Starting append...
+C:\Users\muzam\Documents\Contribute\EditStat-Automate-Mainframe-to-Dashboard-Pipeline\scripts\append.py:44: UserWarning: Boolean Series key will be reindexed to match DataFrame index.
+  rows_to_add = new_df[merged["_merge"] == "left_only"]
+Traceback (most recent call last):
+  File "C:\Users\muzam\Documents\Contribute\EditStat-Automate-Mainframe-to-Dashboard-Pipeline\main.py", line 59, in <module>
+    run_pipeline()
+  File "C:\Users\muzam\Documents\Contribute\EditStat-Automate-Mainframe-to-Dashboard-Pipeline\main.py", line 47, in run_pipeline
+    append.run(editstat_clean, queuestat_clean)
+  File "C:\Users\muzam\Documents\Contribute\EditStat-Automate-Mainframe-to-Dashboard-Pipeline\scripts\append.py", line 68, in run
+    append_to_master(editstat_df, EDITSTAT_MASTER, EDITSTAT_DEDUP_KEY, "EditStat")
+  File "C:\Users\muzam\Documents\Contribute\EditStat-Automate-Mainframe-to-Dashboard-Pipeline\scripts\append.py", line 44, in append_to_master
+    rows_to_add = new_df[merged["_merge"] == "left_only"]
+                  ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\muzam\Documents\Contribute\EditStat-Automate-Mainframe-to-Dashboard-Pipeline\.venv\Lib\site-packages\pandas\core\frame.py", line 4369, in __getitem__
+    return self._getitem_bool_array(key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\muzam\Documents\Contribute\EditStat-Automate-Mainframe-to-Dashboard-Pipeline\.venv\Lib\site-packages\pandas\core\frame.py", line 4425, in _getitem_bool_array
+    key = check_bool_indexer(self.index, key)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\muzam\Documents\Contribute\EditStat-Automate-Mainframe-to-Dashboard-Pipeline\.venv\Lib\site-packages\pandas\core\indexing.py", line 2677, in check_bool_indexer
+    raise IndexingError(
+pandas.errors.IndexingError: Unalignable boolean Series provided as indexer (index of the boolean Series and of the indexed object do not match).
