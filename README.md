@@ -1,85 +1,129 @@
-# 🚀 EdiStat-Automate: Mainframe-to-Dashboard Pipeline
+# EditStat Automate: Mainframe to Dashboard Pipeline
 
-### The Problem
+## 🚀 Overview
 
-The current process requires manual handling of Mainframe JCL outfiles, 45-minute Excel calculations, and extreme memory overhead ($70\%+$ RAM), leading to frequent system crashes and data loss.
+EditStat Automate is a lightweight data pipeline that transforms raw mainframe outputs into structured datasets and dashboard-ready insights.
 
-### The Solution
-
-A lightweight Micro SaaS that intercepts JCL reports, cleans data using Python, and runs multi-threaded calculations in the background, freeing up local resources and ensuring data persistence.
+This project replaces manual Excel-heavy workflows with a scalable, memory-efficient pipeline using Python.
 
 ---
 
-### 🛠 Tech Stack (2026 Modern Blend)
+## 🎯 Problem
 
-* **Frontend:** React.js (Vite) + Tailwind CSS (for the 12:00–21:00 monitoring dashboard).
-* **Backend:** Node.js (Express) for API orchestration.
-* **Processing Engine:** Python (Pandas + NumPy) for heavy-duty data cleaning and math.
-* **Database:** MongoDB (to save state and prevent "accidental touch" crashes).
-* **Automation:** Python `imaplib` (to listen for Outlook reports).
+Current workflow:
 
----
-
-### 🏗 Architecture
+* Mainframe outputs → Excel processing → manual cleanup → reporting
+* High memory usage (VDI constraints)
+* Repetitive manual effort
+* No structured historical tracking
 
 ---
 
-### 📋 Phase-wise Implementation (Brick-by-Brick)
+## 💡 Solution
 
-#### Phase 1: The "Sanitizer" (Python Script)
+A 3-layer pipeline:
 
-* Connect to Outlook via IMAP.
-* Parse Fixed-Width Files (FWF) from JCL output.
-* **Goal:** Convert `.txt` report to a cleaned `JSON/CSV` in $<5$ seconds.
-
-#### Phase 2: The "Logic Engine" (Pandas/NumPy)
-
-* Translate the "EdiStat" Excel formulas into Python functions.
-* Use NumPy for vectorized calculations (replacing the 45-min Excel thread with a 30-second matrix operation).
-* **Goal:** Achieve $100\%$ numerical parity with the original Excel sheet.
-
-#### Phase 3: The "Persistence Layer" (MERN)
-
-* Store every processed report in MongoDB.
-* Build a React UI to view historical "EdiStat" trends.
-* **Goal:** Eliminate "crash-and-restart" risks.
+1. **Data Ingestion**
+   * Read raw mainframe output (CSV/TXT)
+2. **Processing**
+   * Clean, validate, transform data using Python
+   * Append daily records incrementally
+3. **Output**
+   * Generate Excel reports (only as final output)
+   * Optional dashboard (Streamlit)
 
 ---
 
-### 🚀 Getting Started (Under 30 Mins)
+## 🏗️ Architecture
 
-1. **Clone the Repo:**
-```bash
-git clone https://github.com/muzammil-13/edistat-automate.git
+Mainframe Output
+↓
+Raw Files (CSV/TXT)
+↓
+Python Processing Layer
+↓
+Master Dataset (CSV / SQLite)
+↓
+Excel Output / Dashboard
+
+---
+
+## 📁 Project Structure
 
 ```
-
-
-2. **Install Dependencies:**
-* Python: `pip install pandas numpy`
-* Node: `npm install express mongoose`
-
-
-3. **Run the Parser:**
-```bash
-python src/parser.py --file report_from_mainframe.txt
-
+EdiStat-Automate/
+│
+├── data/
+│   ├── raw/
+│   ├── processed/
+│   └── master/
+│
+├── scripts/
+│   ├── ingest.py
+│   ├── process.py
+│   ├── append.py
+│   └── export_excel.py
+│
+├── outputs/
+│   └── reports/
+│
+├── docs/
+│   ├── checklist.md
+│   ├── ai_instructions.md
+│
+├── main.py
+└── README.md
 ```
 
+---
 
+## ⚙️ Key Features
+
+* No dependency on Excel for processing
+* Incremental data appending (daily basis)
+* Memory-efficient (chunk processing)
+* Modular pipeline design
+* Dashboard-ready output
 
 ---
 
-### 📈 Future Vision (Micro SaaS Roadmap)
+## 🧠 Core Concepts
 
-* **Multi-tenancy:** Allow other teams within IBM to create their own "Logic Blocks."
-* **Export to PDF:** Automated weekly reports sent back to managers.
-* **Alerting:** Slack/Teams notification if the calculation deviates from thresholds.
+* Excel = Output layer only
+* CSV/DB = Source of truth
+* Python = Processing engine
+
+---
+
+## 🚧 MVP Scope (7 Days)
+
+* [ ] Read raw mainframe file
+* [ ] Clean and validate data
+* [ ] Append to master dataset
+* [ ] Generate Excel report (EditStat + QueueStat)
+* [ ] Basic logging
+* [ ] Optional: simple dashboard
 
 ---
 
-### 💡 Grit Mindset Note
+## 🧪 How to Run
 
-*Don't build the dashboard first. Build the Python script that cleans the data today. That’s your first brick.*
+```bash
+python main.py
+```
 
 ---
+
+## 🔥 Future Enhancements
+
+* Streamlit dashboard
+* SQLite integration
+* Automated scheduling
+* Data validation rules engine
+* Email automation
+
+---
+
+## 📌 Goal
+
+Transform manual reporting into a reproducible, scalable data pipeline aligned with real-world enterprise workflows.
