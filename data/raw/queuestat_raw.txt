@@ -1,0 +1,16 @@
+ DATE     | QUEUE_NAME    | AGENT_ID | ITEMS_IN | ITEMS_OUT | PENDING | AVG_HANDLE_TIME
+20260423  | CLMS_PEND     | AGT001   | 500      | 450       | 50      | 13.1
+20260423  | AUTH_REQ      | AGT042   | 150      | 150       | 0       | 42.8
+20260423  | DENIALS       | AGT019   | 90       |           | 90      |
+20260423  | HIGH_DOLLAR   |          | 15       | 5         | 10      | 125.0
+ 20260423 | CLMS_PEND     | AGT008   | 350      | 320       |         | 11.5
+20260423  | MED_REVIEW    | AGT099   |          | 60        | 20      | 28.1
+20260423  | ADJ_QUEUE     | AGT033   | 0        | 0         | 0       | 0.0
+20260423  | APPEALS       | AGT012   | 45       | 30        | 15      | 65.3
+20260423  | INQUIRY       | AGT055   | 200      | 190       | 10      | 5.2
+20260423  | CORRESPND     | AGT021   | 75       | 70        | 5       | 18.9
+20260423  | PAYER_REJ     | AGT002   | 110      | 100       | 10      | 22.0
+20260423  | EDI_SUPPORT   | AGT088   | 30       |           | 30      |
+20260423  | PROV_REL      | AGT067   | 60       | 55        | 5       | 35.7
+20260423  | AUDIT_REQ     | AGT042   | 25       | 20        | 5       | 90.1
+20260423  | GRIEVANCE     | AGT012   | 5        | 2         | 3       | 150.5
